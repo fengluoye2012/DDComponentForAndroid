@@ -1,16 +1,13 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion "26.0.1"
-
+    compileSdkVersion versions.compileSdkVersion
     defaultConfig {
-        minSdkVersion 15
-        targetSdkVersion 26
+        minSdkVersion versions.minSdkVersion
+        targetSdkVersion versions.targetSdkVersion
         versionCode 1
         versionName "1.0"
-
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner versions.testInstrumentationRunner
 
     }
     buildTypes {
@@ -22,14 +19,12 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    compile 'com.android.support:appcompat-v7:26.+'
-    testCompile 'junit:junit:4.12'
-    compile 'com.squareup.picasso:picasso:2.5.2'
-//    compile 'com.luojilab.ddcomponent:componentlib:1.0.0'
-    compile project(":componentlib")
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    api deps.test.espresso
+    api deps.appcompat
+    api deps.junit
+    api deps.picasso
+    //compile 'com.luojilab.ddcomponent:componentlib:1.0.0'
+    api project(":componentlib")
 }
 

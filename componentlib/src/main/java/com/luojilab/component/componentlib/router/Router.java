@@ -1,7 +1,8 @@
 package com.luojilab.component.componentlib.router;
 
-import android.support.annotation.Nullable;
 import android.text.TextUtils;
+
+import androidx.annotation.Nullable;
 
 import com.luojilab.component.componentlib.applicationlike.IApplicationLike;
 

@@ -10,17 +10,13 @@ kapt {
 }
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion "26.0.1"
-
+    compileSdkVersion versions.compileSdkVersion
     defaultConfig {
-        minSdkVersion 15
-        targetSdkVersion 14
+        minSdkVersion versions.minSdkVersion
+        targetSdkVersion versions.targetSdkVersion
         versionCode 1
         versionName "1.0"
-
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
+        testInstrumentationRunner versions.testInstrumentationRunner
     }
 
     buildTypes {
@@ -32,13 +28,20 @@ android {
 
     resourcePrefix "kotlin_"
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile project(':componentservice')
-    kapt 'com.luojilab.ddcomponent:router-anno-compiler:1.0.0'
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(':componentservice')
+
+    kapt deps.router_anno_compiler
+    implementation deps.kotlin_stdlib
+    implementation deps.core_ktx
+    implementation deps.anko_common
 }
 
 combuild {

@@ -1,16 +1,16 @@
 apply plugin: 'com.dd.comgradle'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion "26.0.1"
+    compileSdkVersion versions.compileSdkVersion
     defaultConfig {
-        minSdkVersion 15
-        targetSdkVersion 14
+        minSdkVersion versions.minSdkVersion
+        targetSdkVersion versions.targetSdkVersion
         versionCode 1
         versionName "1.0"
-
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner versions.testInstrumentationRunner
 
         javaCompileOptions {
             annotationProcessorOptions {
@@ -37,14 +37,14 @@ android {
 }
 
 dependencies {
-    compile project(':componentservice')
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    annotationProcessor 'com.luojilab.ddcomponent:router-anno-compiler:1.0.0'
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    testCompile 'junit:junit:4.12'
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    api project(':componentservice')
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    annotationProcessor deps.router_anno_compiler
+    testImplementation deps.test.espresso
+    testImplementation deps.junit
+    implementation deps.kotlin_stdlib
+    implementation deps.core_ktx
+    implementation deps.anko_common
 }
 
 combuild {

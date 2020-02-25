@@ -3,8 +3,9 @@ package com.luojilab.component.componentlib.router.ui;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.text.TextUtils;
+
+import androidx.annotation.NonNull;
 
 import com.luojilab.router.facade.utils.RouteUtils;
 

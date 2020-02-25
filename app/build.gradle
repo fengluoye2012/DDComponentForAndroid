@@ -1,22 +1,21 @@
 apply plugin: 'com.dd.comgradle'
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion "26.0.1"
+    compileSdkVersion versions.compileSdkVersion
+
     defaultConfig {
-        applicationId "com.luojilab.androidcomponent"
-        minSdkVersion 15
-        targetSdkVersion 14
+        applicationId appconfig.applicationId
+        minSdkVersion versions.minSdkVersion
+        targetSdkVersion versions.targetSdkVersion
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner versions.testInstrumentationRunner
 
         javaCompileOptions {
             annotationProcessorOptions {
                 arguments = [host: "app"]
             }
         }
-
     }
     buildTypes {
         release {
@@ -41,8 +40,9 @@ android {
 }
 
 dependencies {
-    compile project(':componentservice')
-    annotationProcessor project(':router-anno-compiler')
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    api project(":componentservice")
+    annotationProcessor project(":router-anno-compiler")
 }
 
 combuild {

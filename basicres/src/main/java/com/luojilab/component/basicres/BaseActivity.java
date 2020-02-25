@@ -1,10 +1,12 @@
 package com.luojilab.component.basicres;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.luojilab.component.componentlib.service.AutowiredService;
+
 
 /**
  * Created by mrzhang on 2018/1/16.

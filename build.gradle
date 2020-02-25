@@ -1,31 +1,67 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-    ext.kotlin_version = '1.2.21'
+    ext.versions = [
+            'compileSdkVersion'        : 29,
+            'minSdkVersion'            : 15,
+            'targetSdkVersion'         : 29,
+            'gradle'                   : '3.4.1',
+            'kotlin_version'           : '1.3.31',
+            'anko_version'             : '0.9',
+            'testInstrumentationRunner': 'androidx.test.runner.AndroidJUnitRunner'
+    ]
+
+
+    ext.appconfig = [
+            'applicationId': 'com.luojilab.androidcomponent',
+            'versionCode'  : 1,
+            'versionName'  : '1.0'
+    ]
+
+    ext.deps = [
+            'router_anno_compiler': 'com.luojilab.ddcomponent:router-anno-compiler:1.0.0',
+            'appcompat'           : 'androidx.appcompat:appcompat:1.1.0',
+            'constraintlayout'    : 'androidx.constraintlayout:constraintlayout:1.1.3',
+            'junit'               : 'junit:junit:4.12',
+            'test'                : [
+                    'runner'  : 'androidx.test:runner:1.2.0',
+                    'espresso': 'androidx.test.espresso:espresso-core:3.2.0'
+            ],
+            'gradlePlugin'        : 'com.android.tools.build:gradle:${versions.gradle}',
+            'util'                : 'com.blankj:utilcodex:1.26.0',
+            'picasso'             : 'com.squareup.picasso:picasso:2.5.2',
+            'gson'                : 'com.google.code.gson:gson:2.8.2',
+            'kotlin_stdlib'       : 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.3.31',
+            "core_ktx"            : 'androidx.core:core-ktx:1.1.0',
+            "anko_common"         : 'org.jetbrains.anko:anko-common:0.9'
+    ]
+
+
     repositories {
-        jcenter()
+        google()
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+        mavenCentral()
         maven { url "https://jitpack.io" }
-        maven {
-            url 'https://maven.google.com/'
-            name 'Google'
-        }
+        maven { url 'https://maven.google.com/' }
+        jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.3'
-        classpath 'com.luojilab.ddcomponent:build-gradle:1.1.0'
+        classpath 'com.android.tools.build:gradle:3.4.1'
+        classpath 'com.luojilab.ddcomponent:build-gradle:1.2.0'
         classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.2'
         classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin_version}"
+        classpath "org.jetbrains.kotlin:kotlin-android-extensions:${versions.kotlin_version}"
     }
 }
 
 allprojects {
     repositories {
-        jcenter()
+        google()
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+        mavenCentral()
         maven { url "https://jitpack.io" }
-        maven {
-            url 'https://maven.google.com/'
-            name 'Google'
-        }
+        maven { url 'https://maven.google.com/' }
+        jcenter()
     }
 }
