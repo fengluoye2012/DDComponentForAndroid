@@ -1,9 +1,10 @@
 package com.luojilab.reader.runalone;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.luojilab.reader.R;
 import com.luojilab.reader.ReaderFragment;
