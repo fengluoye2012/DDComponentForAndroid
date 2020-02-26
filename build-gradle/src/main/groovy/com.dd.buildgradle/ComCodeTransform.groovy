@@ -7,6 +7,11 @@ import org.apache.commons.codec.digest.DigestUtils
 import org.apache.commons.io.FileUtils
 import org.gradle.api.Project
 
+/**
+ * 1、通过当前module的build.gradle 自定义extension 的属性获取到对应的Application
+ * 2、
+ *
+ */
 class ComCodeTransform extends Transform {
 
     private Project project
