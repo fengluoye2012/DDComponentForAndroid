@@ -8,9 +8,7 @@ import org.apache.commons.io.FileUtils
 import org.gradle.api.Project
 
 /**
- * 1、通过当前module的build.gradle 自定义extension 的属性获取到对应的Application
- * 2、
- *
+ * 收集IApplicationLike 接口的子类
  */
 class ComCodeTransform extends Transform {
 
@@ -98,6 +96,10 @@ class ComCodeTransform extends Transform {
     }
 
 
+    /**
+     * 通过自定义
+     * @param inputs
+     */
     private void getRealApplicationName(Collection<TransformInput> inputs) {
         applicationName = project.extensions.combuild.applicationName
         if (applicationName == null || applicationName.isEmpty()) {
@@ -106,6 +108,12 @@ class ComCodeTransform extends Transform {
     }
 
 
+    /**
+     * 向主工程的application中插入代码
+     * @param ctClassApplication
+     * @param activators
+     * @param patch
+     */
     private void injectApplicationCode(CtClass ctClassApplication, List<CtClass> activators, String patch) {
         System.out.println("injectApplicationCode begin")
         ctClassApplication.defrost()
@@ -116,8 +124,7 @@ class ComCodeTransform extends Transform {
             StringBuilder methodBody = new StringBuilder()
             methodBody.append("protected void onCreate() {")
             methodBody.append("super.onCreate();")
-            methodBody.
-                    append(getAutoLoadComCode(activators))
+            methodBody.append(getAutoLoadComCode(activators))
             methodBody.append("}")
             ctClassApplication.addMethod(CtMethod.make(methodBody.toString(), ctClassApplication))
         } catch (Exception e) {
