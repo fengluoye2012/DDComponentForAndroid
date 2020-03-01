@@ -8,7 +8,9 @@ import org.apache.commons.io.FileUtils
 import org.gradle.api.Project
 
 /**
- * 收集IApplicationLike 接口的子类
+ * 1）找到IApplicationLike 的所有子类全类名的集合，
+ * 2）通过当前主工程的（）的build.gradle 自定义extension 的属性获取到对应的Application全类名，在onCreate()方法中添加
+ * Router.getInstance().registerComponent(全类名)
  */
 class ComCodeTransform extends Transform {
 
@@ -97,7 +99,7 @@ class ComCodeTransform extends Transform {
 
 
     /**
-     * 通过自定义
+     * 通过gradle的自定义属性，找到对应的Application 的子类
      * @param inputs
      */
     private void getRealApplicationName(Collection<TransformInput> inputs) {
@@ -109,7 +111,7 @@ class ComCodeTransform extends Transform {
 
 
     /**
-     * 向主工程的application中插入代码
+     * 找到onCreate()方法（如果没有重写onCreate()方法，则添加onCreate()），在其方法中插入指定代码，
      * @param ctClassApplication
      * @param activators
      * @param patch
@@ -157,6 +159,11 @@ class ComCodeTransform extends Transform {
         return false
     }
 
+    /**
+     * 获取当前类的接口类，是否实现IApplicationLike 接口
+     * @param ctClass
+     * @return
+     */
     private boolean isActivator(CtClass ctClass) {
         try {
             for (CtClass ctClassInter : ctClass.getInterfaces()) {
