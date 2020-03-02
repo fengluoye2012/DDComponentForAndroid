@@ -16,8 +16,14 @@ import java.util.List;
 import java.util.Map;
 
 public abstract class BaseCompRouter implements IComponentRouter {
+    /**
+     * 路径->Class 对应
+     */
     protected Map<String, Class> routeMapper = new HashMap<String, Class>();
 
+    /**
+     * Class->参数 对应
+     */
     protected Map<Class, Map<String, Integer>> paramsMapper = new HashMap<>();
 
     protected boolean hasInitMap = false;
